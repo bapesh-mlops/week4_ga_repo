@@ -18,17 +18,16 @@ class TestModel(unittest.TestCase):
         from tensorflow.keras.models import load_model, Model
         from tensorflow.image import resize
 
-        sample_image=load_img(img, target_size=(224,224))
+        sample_image=load_img(img, target_size=(150,150))
         sample_img=img_to_array(sample_image)/255.0
         sample=np.expand_dims(sample_img, axis=0)
 
-        self.base_model = applications.VGG16(include_top=False, input_shape=(224,224, 3))
+        self.base_model = applications.VGG16(include_top=False, input_shape=(150,150, 3))
 
         layer_name = 'block5_pool'
         output_layer = Model(inputs=self.base_model.input, outputs=self.base_model.get_layer(layer_name).output)
         converted_img = output_layer.predict(sample)
         converted_img = converted_img[0]
-        resized_sample = resize(converted_img, size=(4,4))
         resized=np.expand_dims(resized_sample, axis=0)
         return resized
 

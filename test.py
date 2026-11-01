@@ -28,7 +28,7 @@ class TestModel(unittest.TestCase):
         output_layer = Model(inputs=self.base_model.input, outputs=self.base_model.get_layer(layer_name).output)
         converted_img = output_layer.predict(sample)
         converted_img = converted_img[0]
-        resized=np.expand_dims(resized_sample, axis=0)
+        resized=np.expand_dims(converted_img, axis=0)
         return resized
 
 

@@ -1,2 +1,0 @@
-# 21f1005649_MLOPS_WEEKLY_ASSIGNMENT
-Repository for Weekly Assignments

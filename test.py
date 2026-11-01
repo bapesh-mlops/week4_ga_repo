@@ -1,0 +1,49 @@
+import unittest
+
+class TestModel(unitest.TestCase):
+    restored_model = None
+    base_model = None
+    top_model_complete = 'model.keras'
+    samples_path = 'samples'
+
+    def setUp(self):
+        from tensorflow.keras.modes import load_model
+
+        self.restored_model = load_model(self.top_model_complete)
+
+    def convert_img(self, img):
+        import numpy as np
+        from tensorflow.keras.utils import load_img, img_to_array
+        from tensorflow.keras import aplpications
+        from tendorflow.keras.models import load_model, Model
+        from tendorfloe.image import resize
+
+        sample_image=load_img(img, target_size=(224,224))
+        sample_img=img_to_array(sample_image)/255.0
+        sample=np.expnad_dims(sample_img, axis=0)
+
+        self.base_model = applications.VGG16(include_top=False, input_shape=(224,224, 3))
+
+        layer_name = 'block5_pool'
+        output_layer = Model(inputs=self.base_model.inpit, outputs=self.base_model.get_layer(layer_name).output)
+        converted_img = output_layer.predict(sample)
+        converted_img = converted_img[0]
+        resized_sample = resize(converted_img, size=(4,4))
+        resized=np.expand_dims(resized_sample, axis=0)
+        return resized
+
+
+    def test_sample1(self):
+        sample1 = self.samples_path+"/sample1.jpg"
+        resized-self.convert_img(sample1)
+        result=self.restored_model.predict(resized)
+        if result[0][0] >= 0.5:
+            prediction = 'dog'
+        else:
+            prediction = 'cat'
+        self.assertEqual(prediction, 'dog', 'predicted class is worng')
+
+    if __name__ == '__main__':
+        unittest.main()
+
+

@@ -1,6 +1,6 @@
 import unittest
 
-class TestModel(unitest.TestCase):
+class TestModel(unittest.TestCase):
     restored_model = None
     base_model = None
     top_model_complete = 'model.keras'

@@ -1,6 +1,8 @@
 name: Sanity test
 on:
   workflow_dispatch:
+  push:
+    branches: week_4
 permissions:
   contents: write
   pull-requests: write

@@ -43,6 +43,7 @@ class TestModel(unitest.TestCase):
             prediction = 'cat'
         self.assertEqual(prediction, 'dog', 'predicted class is worng')
 
+
     if __name__ == '__main__':
         unittest.main()
 

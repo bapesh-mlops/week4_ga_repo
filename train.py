@@ -126,5 +126,6 @@ def train_top_model():
     model.save(top_model_complete)
 
 
+
 save_bottlebeck_features()
 train_top_model()

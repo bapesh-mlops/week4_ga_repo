@@ -33,6 +33,9 @@ jobs:
         run: |
           cp "$(find data/train/dogs -type f \( -iname '*.jpg' -o -iname '*.jpeg' \) | shuf -n 1)" samples/sample1.jpg
           test -s samples/sample1.jpg
+      - name: Check TensorFlow and Keras versions  
+        run: |
+          python -c "import tensorflow as tf, keras; print('TensorFlow:', tf.__version__); print('Keras:', keras.__version__)"
       - name: Run unit tests
         run: |
           python -m unittest test -v

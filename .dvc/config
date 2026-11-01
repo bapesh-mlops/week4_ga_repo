@@ -1,0 +1,4 @@
+[core]
+    remote = myremote
+['remote "myremote"']
+    url = gs://project-80e1c469-1e50-4478-ab9-week4/dvc-storage

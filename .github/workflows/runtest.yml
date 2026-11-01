@@ -18,15 +18,15 @@ jobs:
       - name: run unit tests
         run: |
           pip install -r requirements.txt
-          python -m test 2>&1 > test_output.txt
+          python -m test > test_output.txt 2>&1
       - name: Create CML Report
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run:
+        run: |
           echo "test output" > report.md
           echo '```' >> report.md
           cat test_output.txt >> report.md
           echo '```' >> report.md
-          echo "metrics from training" > report.md
+          echo "metrics from training" >> report.md
           cat metrics.csv >> report.md
           cml comment create --publish report.md

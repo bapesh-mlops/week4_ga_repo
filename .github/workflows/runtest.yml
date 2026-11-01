@@ -31,7 +31,7 @@ jobs:
           python -m dvc pull data
       - name: Prepare test image
         run: |
-          cp "$(find data -type f \( -iname '*.jpg' -o -iname '*.jpeg' \) | shuf -n 1)" samples/sample1.jpg
+          cp "$(find data/train/dogs -type f \( -iname '*.jpg' -o -iname '*.jpeg' \) | shuf -n 1)" samples/sample1.jpg
           test -s samples/sample1.jpg
       - name: run unit tests
         run: |
